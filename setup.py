@@ -12,7 +12,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='elastic_helper',  # Required
-    version='0.0.1',  # Required
+    version='0.0.2',  # Required
     description='A simple wrapper class for python elasticsearch',  # Optional
     url='https://github.com/adidier17/elastic_helper',  # Optional
     author='Annie Didier',  # Optional

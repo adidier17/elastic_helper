@@ -1,0 +1,7 @@
+README.md
+setup.py
+elastic_helper.egg-info/PKG-INFO
+elastic_helper.egg-info/SOURCES.txt
+elastic_helper.egg-info/dependency_links.txt
+elastic_helper.egg-info/requires.txt
+elastic_helper.egg-info/top_level.txt

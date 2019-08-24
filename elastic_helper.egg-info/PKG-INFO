@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: elastic-helper
+Version: 0.0.2
+Summary: A simple wrapper class for python elasticsearch
+Home-page: https://github.com/adidier17/elastic_helper
+Author: Annie Didier
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3

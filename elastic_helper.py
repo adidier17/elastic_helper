@@ -9,11 +9,12 @@ from elasticsearch.helpers import bulk
 import os
 
 class ElasticHelper:
-    def __init__(self):
-        base_url = os.getenv("ES_BASE_URL")
-        # if base_url == None:
-        #     base_url = "localhost"
-        es_url = "http://" + base_url + ":9200"
+    def __init__(self, es_url=None):
+        if es_url != None:
+            base_url = os.getenv("ES_BASE_URL")
+            # if base_url == None:
+            #     base_url = "localhost"
+            es_url = "http://" + base_url + ":9200"
         print(f"Setting elasticsearch url to {es_url}")
         self.es = Elasticsearch(es_url)
         self.index_name = 'maars'

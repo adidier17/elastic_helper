@@ -7,6 +7,10 @@ elasticsearch before I containerize the solution.
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 import os
+import logging
+import sys
+
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 class ElasticHelper:
     def __init__(self, es_url=None):
@@ -15,22 +19,22 @@ class ElasticHelper:
             # if base_url == None:
             #     base_url = "localhost"
             es_url = "http://" + base_url + ":9200"
-        print(f"Setting elasticsearch url to {es_url}")
+        logging.info("Setting elasticsearch url to %s", es_url)
         self.es = Elasticsearch(es_url)
         self.index_name = 'maars'
         self.doc_type = 'image_data'
 
     def create_index(self, mapping):
         res = self.es.indices.create(self.index_name, body=mapping)
-        print(res)
+        logging.info(json.dumps(res))
 
     def delete_index(self):
         res = self.es.indices.delete(index=self.index_name)
-        print(res)
+        logging.info(json.dumps(res))
 
     def index_doc(self, doc, id):
         res = self.es.index(index=self.index_name, doc_type=self.doc_type, body=doc, id=id)
-        print(res)
+        logging.info(json.dumps(res))
 
     def data_gen(self, data, op_type):
         for doc in data:

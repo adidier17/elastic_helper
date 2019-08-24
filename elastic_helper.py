@@ -9,6 +9,7 @@ from elasticsearch.helpers import bulk
 import os
 import logging
 import sys
+import json
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 

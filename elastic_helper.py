@@ -13,16 +13,20 @@ import sys
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 class ElasticHelper:
-    def __init__(self, es_url=None):
-        if es_url != None:
+    def __init__(self, es_url=None, index_name=None, doc_type=None):
+        if es_url == None:
             base_url = os.getenv("ES_BASE_URL")
             # if base_url == None:
             #     base_url = "localhost"
             es_url = "http://" + base_url + ":9200"
         logging.info("Setting elasticsearch url to %s", es_url)
         self.es = Elasticsearch(es_url)
-        self.index_name = 'maars'
-        self.doc_type = 'image_data'
+        self.index_name = index_name
+        if self.index_name == None:
+            self.index_name = os.getenv("ES_INDEX_NAME")
+        self.doc_type = doc_type
+        if self.doc_type == None:
+            self.doc_type = os.getenv("ES_DOC_TYPE")
 
     def create_index(self, mapping):
         res = self.es.indices.create(self.index_name, body=mapping)

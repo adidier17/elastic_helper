@@ -69,18 +69,18 @@ class ElasticHelper:
         res = self.es.search(index=self.index_name, body=matchall_Query)
         return res
 
-    def get_doc_by_id(self, id):
-        res = self.es.get(index=self.index_name, doc_type=self.doc_type, id=id)
+    def get_doc_by_id(self, id, **kwargs):
+        res = self.es.get(index=self.index_name, doc_type=self.doc_type, id=id, **kwargs)
         return res
 
-    def get_doc_by_fpath(self, fpath):
+    def get_doc_by_fpath(self, fpath, **kwargs):
         query = {"query": {
             "match": {"fpath": fpath
                       }}
         }
-        res = self.es.search(index=self.index_name, body=query)
+        res = self.es.search(index=self.index_name, body=query, **kwargs)
         return res
 
-    def query(self, query):
-        res = self.es.search(index=self.index_name, body=query)
+    def query(self, query, **kwargs):
+        res = self.es.search(index=self.index_name, body=query, **kwargs)
         return res

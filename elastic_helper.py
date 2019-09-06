@@ -37,8 +37,8 @@ class ElasticHelper:
         res = self.es.indices.delete(index=self.index_name)
         logging.info(json.dumps(res))
 
-    def index_doc(self, doc, id):
-        res = self.es.index(index=self.index_name, doc_type=self.doc_type, body=doc, id=id)
+    def index_doc(self, doc, id, **kwargs):
+        res = self.es.index(index=self.index_name, doc_type=self.doc_type, body=doc, id=id, **kwargs)
         logging.info(json.dumps(res))
 
     def data_gen(self, data, op_type):
@@ -54,11 +54,11 @@ class ElasticHelper:
                 "_source": doc2index
             }
 
-    def bulk_index_data(self, data):
-        bulk(self.es, self.data_gen(data, "index"))
+    def bulk_index_data(self, data, **kwargs):
+        bulk(self.es, self.data_gen(data, "index"), **kwargs)
 
-    def bulk_update_docs(self, data):
-        bulk(self.es, self.data_gen(data, "update"))
+    def bulk_update_docs(self, data, **kwargs):
+        bulk(self.es, self.data_gen(data, "update"), **kwargs)
 
     def get_data(self, size=1):
         matchall_Query = {"query": {
